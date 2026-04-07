@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -15,19 +16,19 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 10.0.x
+          dotnet-version: 9.0.x
 
       - name: Build x64
-        run: dotnet build MultiArchTest\MultiArchTest.csproj -c Debug -r win-x64
+        run: dotnet build MultiArchTest/MultiArchTest.csproj -c Debug -r win-x64
 
       - name: Build ARM64
-        run: dotnet build MultiArchTest\MultiArchTest.csproj -c Debug -r win-arm64
+        run: dotnet build MultiArchTest/MultiArchTest.csproj -c Debug -r win-arm64
 
       - name: Print hashes
-  shell: pwsh
-  run: |
-    Write-Host "x64 hash:"
-    Get-FileHash MultiArchTest\bin\Debug\net9.0\win-x64\MultiArchTest.dll
+        shell: pwsh
+        run: |
+          Write-Host "x64 hash:"
+          Get-FileHash MultiArchTest/bin/Debug/net9.0/win-x64/MultiArchTest.dll
 
-    Write-Host "ARM64 hash:"
-    Get-FileHash MultiArchTest\bin\Debug\net9.0\win-arm64\MultiArchTest.dll
+          Write-Host "ARM64 hash:"
+          Get-FileHash MultiArchTest/bin/Debug/net9.0/win-arm64/MultiArchTest.dll
