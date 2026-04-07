@@ -24,9 +24,10 @@ jobs:
         run: dotnet build MultiArchTest\MultiArchTest.csproj -c Debug -r win-arm64
 
       - name: Print hashes
-        shell: pwsh
-        run: |
-          Write-Host "x64 hash:"
-          Get-FileHash MultiArchTest\bin\Debug\net10.0\win-x64\MultiArchTest.dll
-          Write-Host "ARM64 hash:"
-          Get-FileHash MultiArchTest\bin\Debug\net10.0\win-arm64\MultiArchTest.dll
+  shell: pwsh
+  run: |
+    Write-Host "x64 hash:"
+    Get-FileHash MultiArchTest\bin\Debug\net9.0\win-x64\MultiArchTest.dll
+
+    Write-Host "ARM64 hash:"
+    Get-FileHash MultiArchTest\bin\Debug\net9.0\win-arm64\MultiArchTest.dll
